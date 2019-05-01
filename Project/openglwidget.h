@@ -15,14 +15,15 @@ public:
     void paintGL() override;
 
 public slots:
-    void set_painter(QString func, double step);
+    void set_painter(int func, double step);
 
 private:
-    QString cur_func;
     double cur_step;
+    int status;
 
     void sin_x();
     void cos_x();
+    void tan_x();
 
     void draw_grid();
 

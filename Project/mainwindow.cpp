@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     simulation = new OpenglWidget;
     ui->layout->addWidget(simulation);
     ui->comboBox->addItem("sin x");
+    ui->comboBox->addItem("cos x");
+    ui->comboBox->addItem("tan x");
     ui->comboBox->currentIndex();
 
     connect(this, &MainWindow::signal_set_params_openglwidget,
@@ -20,7 +22,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_button_clicked() {
-    QString func = ui->comboBox->currentText();
+    int func = ui->comboBox->currentIndex();
     double step = ui->lineEdit->text().toDouble();
-    emit signal_set_params_openglwidget(func, step);
+    emit signal_set_params_openglwidget(func + 1, step);
 }

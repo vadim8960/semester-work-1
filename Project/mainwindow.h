@@ -21,7 +21,7 @@ private slots:
     void on_button_clicked();
 
 signals:
-    void signal_set_params_openglwidget(QString func, double step);
+    void signal_set_params_openglwidget(int func, double step);
 
 private:
     Ui::MainWindow *ui;

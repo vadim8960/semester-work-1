@@ -64,7 +64,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,    0,   29,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::Double,    3,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Double,    3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,14 +78,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signal_set_params_openglwidget((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
+        case 0: _t->signal_set_params_openglwidget((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
         case 1: _t->on_button_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (MainWindow::*)(QString , double );
+            using _t = void (MainWindow::*)(int , double );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWindow::signal_set_params_openglwidget)) {
                 *result = 0;
                 return;
@@ -135,7 +135,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow::signal_set_params_openglwidget(QString _t1, double _t2)
+void MainWindow::signal_set_params_openglwidget(int _t1, double _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

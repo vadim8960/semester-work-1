@@ -59,7 +59,7 @@ static const uint qt_meta_data_OpenglWidget[] = {
        1,    2,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::Double,    3,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Double,    3,    4,
 
        0        // eod
 };
@@ -70,7 +70,7 @@ void OpenglWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         OpenglWidget *_t = static_cast<OpenglWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->set_painter((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
+        case 0: _t->set_painter((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
         default: ;
         }
     }
