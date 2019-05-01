@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "openglwidget.h"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -15,8 +17,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_button_clicked();
+
+signals:
+    void signal_set_params_openglwidget(QString func, double step);
+
 private:
     Ui::MainWindow *ui;
+    OpenglWidget *simulation;
 };
 
 #endif // MAINWINDOW_H
