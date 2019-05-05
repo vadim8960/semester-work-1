@@ -2,7 +2,8 @@
 #include <string>
 #include <cmath>
 
-using namespace std;
+using std::cin;
+using std::cout;
 
 const double eps = 0.0001;
 const double dt  = 0.01;
@@ -18,7 +19,7 @@ enum Error {
 Error read_data(double &a, double &b, double &x0) {
 	cout << "Enter a, b, x0: ";
 	Error error = NO_ERROR;
-	string tmp_error_string;
+	std::string tmp_error_string;
 	if (!(cin >> a)) {
 		cin.clear();
 		cin >> tmp_error_string;
