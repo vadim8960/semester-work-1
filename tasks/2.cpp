@@ -3,7 +3,8 @@
 #include <iomanip>
 #include <cmath>
 
-using namespace std;
+using std::cin;
+using std::cout;
 
 double ** create_mat(unsigned _w, unsigned _h) {
 	double ** tmp = new double*[_h];
@@ -16,7 +17,13 @@ double ** create_mat(unsigned _w, unsigned _h) {
 	return tmp;
 }
 
-void generate_mat(double ** mat, unsigned _w, unsigned _h, ifstream & in) {
+void delete_mat(double ** mat, unsigned _w, unsigned _h) {
+	for (unsigned iter = 0; iter < _h; ++iter)
+		delete [] mat[iter];
+	delete [] mat;
+}
+
+void generate_mat(double ** mat, unsigned _w, unsigned _h, std::ifstream & in) {
 	for (unsigned iter1 = 0; iter1 < _h; ++iter1)
 		for (unsigned iter2 = 0; iter2 < _w; ++iter2)
 			in >> mat[iter1][iter2];
@@ -27,7 +34,8 @@ void print_mat(double ** mat, unsigned _w, unsigned _h) {
 		for (unsigned iter2 = 0; iter2 < _w; ++iter2) {
 			if (iter2 == _w - 1)
 				cout << "| ";
-			cout << fixed << setprecision(1) << setw(5) << mat[iter1][iter2] << ' ';
+			cout << std::fixed << std::setprecision(1) << 
+			        std::setw(5) << mat[iter1][iter2] << ' ';
 		}
 		cout << '\n';
 	}
@@ -35,9 +43,10 @@ void print_mat(double ** mat, unsigned _w, unsigned _h) {
 }
 
 void print_ans(double * ans, double _h) {
-	cout << "Answer: \n";
+	cout << " Answer: \n";
 	for (unsigned iter = 1; iter <= _h; ++iter)
-		cout << "x" << iter << " = " << ans[iter - 1] << '\n';
+		cout << " x" << iter << " = " << ans[iter - 1] << '\n';
+	cout << "\n\n";
 }
 
 void my_swap(double & v1, double & v2) {
@@ -66,9 +75,9 @@ void move_max(double ** mat, unsigned _w, unsigned _h, unsigned start_str) {
 	unsigned max_str   = start_str, 
 	         max_value = abs(mat[start_str][start_str]);
 	for (unsigned iter1 = start_str + 1; iter1 < _h; ++iter1) {
-		if (abs(mat[iter1][start_str]) > max_value) {
+		if (std::abs(mat[iter1][start_str]) > max_value) {
 			max_str = iter1;
-			max_value = abs(mat[iter1][start_str]);
+			max_value = std::abs(mat[iter1][start_str]);
 		}
 	}
 	swap_str(mat, start_str, max_str, _w);
@@ -96,16 +105,19 @@ void get_answer(double ** mat, unsigned _w, unsigned _h, double * ans) {
 }
 
 int main() {
-	ifstream in("mat_2");
+	std::ifstream in("mat_2");
 	unsigned w, h;
 	in >> w >> h;
 	double ** mat = create_mat(w, h);
 	generate_mat(mat, w, h, in);
 	double * ans  = new double[h];
-	for (unsigned iter = 0; iter < h; ++iter, ans[iter] = 0);
+	for (unsigned iter = 0; iter < h; ++iter)
+		ans[iter] = 0;
 	print_mat(mat, w, h);
 	triangle_view(mat, w, h);
 	get_answer(mat, w, h, ans);
 	print_ans(ans, h);
+	delete_mat(mat, w, h);
+	delete [] ans;
 	return 0;
 }
