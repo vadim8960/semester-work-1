@@ -69,6 +69,7 @@ void OpenglWidget::sin_x() {
             glVertex2d(x - step, qSin(my_map(x - step, min_graph, max_graph, min_f, max_f)));
         }
     glEnd();
+    update();
 }
 
 void OpenglWidget::cos_x() {

@@ -104,6 +104,10 @@ void get_answer(double ** mat, unsigned _w, unsigned _h, double * ans) {
 		calc_root(mat, _w, iter, ans);
 }
 
+void check_roots(double ** mat, double ** ) {
+	
+}
+
 int main() {
 	std::ifstream in("mat_2");
 	unsigned w, h;
