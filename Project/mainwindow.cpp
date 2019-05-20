@@ -23,7 +23,16 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_button_clicked() {
-    int func = ui->comboBox->currentIndex();
-    double step = ui->lineEdit->text().toDouble();
-    emit signal_set_params_openglwidget(func + 1, step);
+    int func             = ui->comboBox->currentIndex();
+    double step          = ui->line_step->text().toDouble();
+    int interval_left_x  = ui->line_interval_left_x->text().toInt();
+    int interval_right_x = ui->line_interval_right_x->text().toInt();
+    int interval_up_y    = ui->line_interval_up_y->text().toInt();
+    int interval_down_y  = ui->line_interval_down_y->text().toInt();
+    emit signal_set_params_openglwidget(func + 1,
+                                        step,
+                                        interval_left_x,
+                                        interval_right_x,
+                                        interval_up_y,
+                                        interval_down_y);
 }

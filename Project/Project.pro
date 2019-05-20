@@ -8,6 +8,7 @@ QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+LIBS += -lGLU
 TARGET = Project
 TEMPLATE = app
 

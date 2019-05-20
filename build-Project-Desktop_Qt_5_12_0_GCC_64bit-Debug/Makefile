@@ -38,7 +38,7 @@ DISTNAME      = Project1.0.0
 DISTDIR = /home/vadim/programs/cpp/semester-work-1/build-Project-Desktop_Qt_5_12_0_GCC_64bit-Debug/.tmp/Project1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/vadim/Qt/5.12.0/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/vadim/Qt/5.12.0/gcc_64/lib -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread   
+LIBS          = $(SUBLIBS) -lGLU -L/home/vadim/Qt/5.12.0/gcc_64/lib -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -713,8 +713,9 @@ moc_predefs.h: ../../../../Qt/5.12.0/gcc_64/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_openglwidget.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_openglwidget.cpp
-moc_mainwindow.cpp: ../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
+moc_mainwindow.cpp: ../Project/openglwidget.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QOpenGLWidget \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qopenglwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtguiglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qglobal.h \
@@ -740,6 +741,7 @@ moc_mainwindow.cpp: ../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qversiontagging.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtgui-config.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qobjectdefs.h \
@@ -817,6 +819,17 @@ moc_mainwindow.cpp: ../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengl.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qt_windows.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QtMath \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QDebug \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qicon.h \
 		../Project/mainwindow.h \
@@ -935,6 +948,9 @@ moc_openglwidget.cpp: ../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QOpenGLWidg
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qt_windows.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengles2ext.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QtMath \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QDebug \
 		../Project/openglwidget.h \
 		moc_predefs.h \
 		../../../../Qt/5.12.0/gcc_64/bin/moc
@@ -962,8 +978,9 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../Project/main.cpp ../Project/mainwindow.h \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
+		../Project/openglwidget.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QOpenGLWidget \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qopenglwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtguiglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qglobal.h \
@@ -989,6 +1006,7 @@ main.o: ../Project/main.cpp ../Project/mainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qversiontagging.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtgui-config.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qobjectdefs.h \
@@ -1066,6 +1084,17 @@ main.o: ../Project/main.cpp ../Project/mainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengl.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qt_windows.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QtMath \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QDebug \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qicon.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QApplication \
@@ -1078,8 +1107,9 @@ main.o: ../Project/main.cpp ../Project/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Project/main.cpp
 
 mainwindow.o: ../Project/mainwindow.cpp ../Project/mainwindow.h \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
+		../Project/openglwidget.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QOpenGLWidget \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qopenglwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtguiglobal.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qglobal.h \
@@ -1105,6 +1135,7 @@ mainwindow.o: ../Project/mainwindow.cpp ../Project/mainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qversiontagging.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtgui-config.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qobjectdefs.h \
@@ -1182,6 +1213,17 @@ mainwindow.o: ../Project/mainwindow.cpp ../Project/mainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengl.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qt_windows.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QtMath \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QDebug \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
@@ -1231,8 +1273,7 @@ mainwindow.o: ../Project/mainwindow.cpp ../Project/mainwindow.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qlayout.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/QWidget
+		../../../../Qt/5.12.0/gcc_64/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Project/mainwindow.cpp
 
 openglwidget.o: ../Project/openglwidget.cpp ../Project/openglwidget.h \
@@ -1346,7 +1387,10 @@ openglwidget.o: ../Project/openglwidget.cpp ../Project/openglwidget.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengl.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtCore/qt_windows.h \
 		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopengles2ext.h \
-		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h
+		../../../../Qt/5.12.0/gcc_64/include/QtGui/qopenglext.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QtMath \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.12.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o openglwidget.o ../Project/openglwidget.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

@@ -3,14 +3,24 @@
 OpenglWidget::OpenglWidget() {
     cur_step = 0.01;
     status = 0;
+    interval_left_x = -1;
+    interval_right_x = 1;
+    interval_down_y = -1;
+    interval_up_y = 1;
 }
 
 void OpenglWidget::initializeGL() {
     glClearColor(1, 1, 1, 1);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(interval_left_x, interval_right_x, interval_down_y, interval_up_y);
     glEnable(GL_SMOOTH);
 }
 
 void OpenglWidget::paintGL() {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(interval_left_x, interval_right_x, interval_down_y, interval_up_y);
     switch (status) {
     case 0:
         draw_grid();
@@ -43,7 +53,16 @@ void OpenglWidget::draw_grid() {
     glEnd();
 }
 
-void OpenglWidget::set_painter(int func, double step) {
+void OpenglWidget::set_painter(int func,
+                               double step,
+                               int interval_left_x,
+                               int interval_right_x,
+                               int interval_up_y,
+                               int interval_down_y) {
+    this->interval_left_x  = interval_left_x;
+    this->interval_right_x = interval_right_x;
+    this->interval_down_y  = interval_down_y;
+    this->interval_up_y    = interval_up_y;
     status = func;
     cur_step = step;
     update();

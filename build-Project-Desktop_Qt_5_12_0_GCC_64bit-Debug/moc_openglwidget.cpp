@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_OpenglWidget_t {
-    QByteArrayData data[5];
-    char stringdata0[36];
+    QByteArrayData data[9];
+    char stringdata0[99];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,16 @@ QT_MOC_LITERAL(0, 0, 12), // "OpenglWidget"
 QT_MOC_LITERAL(1, 13, 11), // "set_painter"
 QT_MOC_LITERAL(2, 25, 0), // ""
 QT_MOC_LITERAL(3, 26, 4), // "func"
-QT_MOC_LITERAL(4, 31, 4) // "step"
+QT_MOC_LITERAL(4, 31, 4), // "step"
+QT_MOC_LITERAL(5, 36, 15), // "interval_left_x"
+QT_MOC_LITERAL(6, 52, 16), // "interval_right_x"
+QT_MOC_LITERAL(7, 69, 13), // "interval_up_y"
+QT_MOC_LITERAL(8, 83, 15) // "interval_down_y"
 
     },
-    "OpenglWidget\0set_painter\0\0func\0step"
+    "OpenglWidget\0set_painter\0\0func\0step\0"
+    "interval_left_x\0interval_right_x\0"
+    "interval_up_y\0interval_down_y"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,10 +62,10 @@ static const uint qt_meta_data_OpenglWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   19,    2, 0x0a /* Public */,
+       1,    6,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Double,    3,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Double, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,
 
        0        // eod
 };
@@ -70,7 +76,7 @@ void OpenglWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         OpenglWidget *_t = static_cast<OpenglWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->set_painter((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
+        case 0: _t->set_painter((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6]))); break;
         default: ;
         }
     }
