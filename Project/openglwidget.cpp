@@ -24,6 +24,9 @@ void OpenglWidget::paintGL() {
     case 3:
         tan_x();
     break;
+    case 4:
+        ln_x();
+    break;
     }
 }
 
@@ -105,12 +108,34 @@ void OpenglWidget::tan_x() {
     glBegin(GL_LINES);
         glColor3d(0, 1, 0);
         for (double x = 0; x < max_graph; x += step) {
-            glVertex2d(x, qTan(my_map(x, min_graph, max_graph, min_f, max_f)));
-            glVertex2d(x + step, qTan(my_map(x + step, min_graph, max_graph, min_f, max_f)));
+            glVertex2d(x, qSqrt(my_map(x, min_graph, max_graph, min_f, max_f)));
+            glVertex2d(x + step, qSqrt(my_map(x + step, min_graph, max_graph, min_f, max_f)));
         }
         for (double x = 0; x > min_graph; x -= step) {
-            glVertex2d(x, qTan(my_map(x, min_graph, max_graph, min_f, max_f))/10);
-            glVertex2d(x - step, qTan(my_map(x - step, min_graph, max_graph, min_f, max_f)));
+            glVertex2d(x, qSqrt(my_map(x, min_graph, max_graph, min_f, max_f))/10);
+            glVertex2d(x - step, qSqrt(my_map(x - step, min_graph, max_graph, min_f, max_f)));
+        }
+    glEnd();
+    update();
+}
+
+void OpenglWidget::ln_x() {
+    draw_grid();
+    double min_graph = -0.5,
+           max_graph = 0.5,
+           min_f     = -100,
+           max_f     = 100;
+    double step = my_map(cur_step, min_f, max_f, min_graph, max_graph);;
+    glLineWidth(2.5);
+    glBegin(GL_LINES);
+        glColor3d(0, 1, 0);
+        for (double x = 0; x < max_graph; x += step) {
+            glVertex2d(x, qLn(my_map(x, min_graph, max_graph, min_f, max_f)));
+            glVertex2d(x + step, qLn(my_map(x + step, min_graph, max_graph, min_f, max_f)));
+        }
+        for (double x = 0; x > min_graph; x -= step) {
+            glVertex2d(x, qLn(my_map(x, min_graph, max_graph, min_f, max_f))/10);
+            glVertex2d(x - step, qLn(my_map(x - step, min_graph, max_graph, min_f, max_f)));
         }
     glEnd();
     update();

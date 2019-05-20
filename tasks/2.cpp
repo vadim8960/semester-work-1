@@ -43,7 +43,7 @@ void print_mat(double ** mat, unsigned _w, unsigned _h) {
 }
 
 void print_ans(double * ans, double _h) {
-	cout << " Answer: \n";
+	cout << "Answer: \n";
 	for (unsigned iter = 1; iter <= _h; ++iter)
 		cout << " x" << iter << " = " << ans[iter - 1] << '\n';
 	cout << "\n\n";
@@ -88,8 +88,8 @@ void triangle_view(double ** mat, unsigned _w, unsigned _h) {
 		move_max(mat, _w, _h, iter1);
 		for (unsigned iter2 = iter1 + 1; iter2 < _h; ++iter2) 
 			sum_strings(mat, _w, iter1, iter2, iter1);
-		print_mat(mat, _w, _h);
 	}
+	print_mat(mat, _w, _h);
 }
 
 void calc_root(double ** mat, unsigned _w, unsigned str, double * ans) {
@@ -104,10 +104,6 @@ void get_answer(double ** mat, unsigned _w, unsigned _h, double * ans) {
 		calc_root(mat, _w, iter, ans);
 }
 
-void check_roots(double ** mat, double ** ) {
-	
-}
-
 int main() {
 	std::ifstream in("mat_2");
 	unsigned w, h;
@@ -117,7 +113,9 @@ int main() {
 	double * ans  = new double[h];
 	for (unsigned iter = 0; iter < h; ++iter)
 		ans[iter] = 0;
+	cout << "Input mat:\n";
 	print_mat(mat, w, h);
+	cout << "Triangle view:\n";
 	triangle_view(mat, w, h);
 	get_answer(mat, w, h, ans);
 	print_ans(ans, h);

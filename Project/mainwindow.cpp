@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("sin x");
     ui->comboBox->addItem("cos x");
     ui->comboBox->addItem("tan x");
+    ui->comboBox->addItem("ln x");
     ui->comboBox->currentIndex();
 
     connect(this, &MainWindow::signal_set_params_openglwidget,

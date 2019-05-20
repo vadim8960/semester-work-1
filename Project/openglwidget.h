@@ -24,6 +24,7 @@ private:
     void sin_x();
     void cos_x();
     void tan_x();
+    void ln_x();
 
     void draw_grid();
 
