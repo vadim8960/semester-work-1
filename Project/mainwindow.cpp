@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("GraphViewer");
     simulation = new OpenglWidget;
     ui->layout->addWidget(simulation);
     ui->comboBox->addItem("sin x");

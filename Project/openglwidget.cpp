@@ -3,10 +3,10 @@
 OpenglWidget::OpenglWidget() {
     cur_step = 0.01;
     status = 0;
-    interval_left_x = -1;
-    interval_right_x = 1;
-    interval_down_y = -1;
-    interval_up_y = 1;
+    interval_left_x = -2;
+    interval_right_x = 2;
+    interval_down_y = -2;
+    interval_up_y = 2;
 }
 
 void OpenglWidget::initializeGL() {
@@ -51,7 +51,11 @@ void OpenglWidget::draw_grid() {
         glVertex2d(0, interval_down_y);
         glVertex2d(0, interval_up_y);
     glEnd();
-
+    glPointSize(4);
+    glBegin(GL_POINTS);
+        glVertex2d(1, 0);
+        glVertex2d(0, 1);
+    glEnd();
 }
 
 void OpenglWidget::set_painter(int func,
