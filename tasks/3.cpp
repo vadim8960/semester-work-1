@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const double eps = 0.0001;
+const double eps = 0.01;
 
 double ** create_mat(unsigned _w, unsigned _h) {
 	double ** tmp = new double*[_h];
@@ -53,8 +53,8 @@ void print_ans(double * ans, double _h) {
 bool end_loop(double * xk, double * xkp, unsigned _h) {
 	double norm = 0;
 	for (unsigned iter = 0; iter < _h; ++iter) 
-		norm += (xk[iter] - xkp[iter]) * (xk[iter] - xkp[iter]);
-	return (sqrt(norm) < eps);
+		norm += ((xk[iter] - xkp[iter]) * (xk[iter] - xkp[iter]));
+	return (fabs(norm) < eps);
 }
 
 void get_roots(double ** mat, unsigned _w, unsigned _h, double * ans_now, double * ans_past) {
@@ -73,7 +73,7 @@ void get_roots(double ** mat, unsigned _w, unsigned _h, double * ans_now, double
 }
 
 int main() {
-	std::ifstream in("mat_3_1");
+	std::ifstream in("mat_3_2");
 	unsigned w, h;
 	in >> w >> h;
 	double ** mat = create_mat(w, h);

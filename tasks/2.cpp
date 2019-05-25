@@ -45,7 +45,8 @@ void print_mat(double ** mat, unsigned _w, unsigned _h) {
 void print_ans(double * ans, double _h) {
 	cout << "Answer: \n";
 	for (unsigned iter = 1; iter <= _h; ++iter)
-		cout << " x" << iter << " = " << ans[iter - 1] << '\n';
+		cout << " x" << iter << " = " 
+			 << std::fixed << std::setprecision(6) << ans[iter - 1] << '\n';
 	cout << "\n\n";
 }
 
@@ -94,13 +95,13 @@ void triangle_view(double ** mat, unsigned _w, unsigned _h) {
 
 void calc_root(double ** mat, unsigned _w, unsigned str, double * ans) {
 	double sum = mat[str][_w - 1];
-	for (unsigned iter = str + 1; iter < _w - 1; ++iter) 
-		sum += ( mat[str][iter] * ans[iter] );
+	for (unsigned iter = str + 1; iter < _w - 1; ++iter)
+		sum += ( -mat[str][iter] * ans[iter] );
 	ans[str] = sum / mat[str][str];
 }
 
 void get_answer(double ** mat, unsigned _w, unsigned _h, double * ans) {
-	for (int iter = _h - 1; iter >= 0; --iter)
+	for (int iter = _h - 1; iter >= 0; --iter) 
 		calc_root(mat, _w, iter, ans);
 }
 
