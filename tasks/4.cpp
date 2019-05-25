@@ -1,88 +1,99 @@
 #include <iostream>
+#include <iomanip>
 #include <cmath>
-using namespace std;
-double norm(double *xp,double *xn,int n)
-{
-    double a=0;
-    for (int i=0; i<n; i++)
-        a+=pow(xp[i]-xn[i],2);
-    return sqrt(a);
-}
-double **new_mas(int n)
-{
-    double **a;
-    a=new double *[n];
-    for (int i=0; i<n; i++)
-        a[i]=new double [n];
-    return a;
-}
-double *new_vector(int n)
-{
-    double *v;
-    v=new double [v];
-    return v;
-}
-void full_zero(double *v,int n)
-{
-    for (int i=0; i<n; i++)
-        v[i]=0;
-}
-double new_x(double **a,double *b,double *x,int n)
-{
-    double *v;
-    v=new_vector(n);
-    full_zero(v,n);
-    for (int i=0; i<n; i++)
-    {
-        for (int j=0; j<n; j++)
-            v[i]-=(a[i][j]/a[i][i])*x[j];
-        v[i]+=b[i]/a[i][i];
-    }
-    return v;
-}
-void print_mas(double **a,int n)
-{
-    for (int i=0; i<n; i++)
-        for (int j=0lj<n; j++)
-            cin>>a[i][j];
 
+using namespace std;
+
+const double eps = 0.001;
+
+void print_vector(double * x, int size) {
+    for (unsigned i = 0; i < size; ++i)
+        cout << x[i] << '\n';
 }
-void print_vec(double *v,int n)
-{
-    for (int i=0; i<n; i++)
-        cin>>v[i];
-}
-void show_vec(double *x)
-{
-    for (int i=0; i<n; i++)
-        cout<<x[i]<<endl;
-}
-double *eq_v(double x)
-{
-    double *v;
-    for (int i=0; i<n; i++)
-        v[i]=x[i];
-    return v;
-}
-int main()
-{
-    double **a,*b,*xp,eps=0.001;
-    int n;
-    cin>>n;
-    a=new_mas(n);
-    b=new_vector(n);
-    xn=new_vector(n);
-    xp=new_vector(n);
-    full_zero(xp);
-    xn=eq_v(xp);
-    printf_max(a,b);
-    printf_vec(b,n);
-    xn=new_x(a,b,xp,n);
-    while (norm(xp,xn,n)>eps)
-    {
-        xp=eq_v(xn);
-        xn=new_x(a,b,xp,n);
+
+void print_mat(double ** mat, double * b, int size) {
+    for (unsigned i = 0; i < size; ++i) {
+        for (unsigned j = 0; j < size; ++j)
+            cout << mat[i][j] << ' ';
+        cout <<  " | " << b[i] << '\n';
     }
-    show_vec(xn,n);
+}
+
+void read_mat(double ** mat, double * b, int size) {
+    for (unsigned i = 0; i < size; i++) {
+        for (unsigned j = 0; j < size; j++) 
+            cin >> mat[i][j];
+        cin >> b[i];
+    }
+}
+
+void read_vec(double * vec, int size) {
+    for (unsigned i = 0; i < size; ++i)
+        cin >> vec[i];
+}
+
+double * copy_vector(double * xp, double * xn, int size) {
+    for (unsigned i = 0; i < size; i++)
+        xp[i] = xn[i];
+}
+
+double norm(double * xp, double * xn, unsigned size) {
+    double n = 0;
+    for (unsigned i = 0; i < size; ++i)
+        n += (xp[i] - xn[i]) * (xp[i] - xn[i]);
+    return sqrt(n);
+}
+
+double ** create_mat(unsigned size) {
+    double **mat = new double*[size];
+    for (unsigned i = 0; i < size; ++i)
+        mat[i] = new double[size];
+    return mat;
+}
+
+double * create_vector(int size) {
+    double * vec  = new double[size];
+    for (unsigned i = 0; i < size; i++)
+        vec[i] = 0.00001;
+    return vec;
+}
+
+void new_x(double ** mat, double * b, double * xn, double * xp, int size) {
+    for (unsigned i = 0; i < size; i++) {
+        double sum = b[i];
+        for (unsigned j = 0; j < size; j++)
+            if (i != j)
+                sum += ( -mat[i][j] * xp[j] );
+        cout << "sum = " << sum / mat[i][i] << '\n';
+        xn[i] = sum / mat[i][i];
+    }
+    cout << "Xn = {";
+    for (unsigned iter = 0; iter < size; ++iter)
+        cout << xn[iter] << ' ';
+    cout << "}\n";
+}
+
+int main() {
+    int size;
+    cin >> size;
+
+    double ** mat = create_mat(size);
+    double * b    = create_vector(size);
+    double * xn   = create_vector(size);
+    double * xp   = create_vector(size);
+
+    read_mat(mat, b, size);
+
+    print_mat(mat, b, size);
+    new_x(mat, b, xn, xp, size);
+    // while (norm(xp, xn, size) > eps) {
+    //     copy_vector(xp, xn, size);
+    //     new_x(mat, b, xn, xp, size);
+    // }
+    for (unsigned iter = 0; iter < 10; ++iter) {
+        copy_vector(xp, xn, size);
+        new_x(mat, b, xn, xp, size);
+    }
+    print_vector(xn, size);
     return 0;
 }
