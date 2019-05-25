@@ -15,7 +15,7 @@ int main() {
     double mat[n][n + 1];
     double x[n] = {};    
     double y;
-    
+
     cout << "\nEnter the elements of the augmented matrix row-wise:\n";
     for (unsigned i = 0; i < n; i++)
         for (unsigned j = 0; j <= n; j++)
@@ -29,6 +29,7 @@ int main() {
                     mat[i][j] = mat[k][j];
                     mat[k][j] = temp;
                 }
+    }
 
     cout << "\nIter" << setw(10);
     for(unsigned i = 0; i < n; i++)
