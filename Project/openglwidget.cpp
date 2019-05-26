@@ -34,6 +34,9 @@ void OpenglWidget::paintGL() {
     case 4:
         ln_x();
     break;
+    case 5:
+        x_negative_1();
+    break;
     }
 }
 
@@ -136,6 +139,23 @@ void OpenglWidget::ln_x() {
         for (double x = 0; x > interval_left_x; x -= cur_step) {
             glVertex2d(x, qLn(x));
             glVertex2d(x - cur_step, qLn(x - cur_step));
+        }
+    glEnd();
+    update();
+}
+
+void OpenglWidget::x_negative_1() {
+    draw_grid();
+    glLineWidth(2.5);
+    glBegin(GL_LINES);
+        glColor3d(0, 1, 0);
+        for (double x = cur_step; x < interval_right_x; x += cur_step) {
+            glVertex2d(x, 1 / (x));
+            glVertex2d(x + cur_step, 1 / (x + cur_step));
+        }
+        for (double x = -cur_step; x > interval_left_x; x -= cur_step) {
+            glVertex2d(x, 1 / (x));
+            glVertex2d(x - cur_step, 1 / (x - cur_step));
         }
     glEnd();
     update();

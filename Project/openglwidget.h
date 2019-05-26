@@ -35,10 +35,9 @@ private:
     void cos_x();
     void tan_x();
     void ln_x();
+    void x_negative_1();
 
     void draw_grid();
-
-    double my_map(double x, double in_min, double in_max, double out_min, double out_max);
 };
 
 #endif // OPENGLWIDGET_H
