@@ -12,6 +12,7 @@ void print_vector(double * x, int size) {
 }
 
 void print_mat(double ** mat, double * b, int size) {
+    cout << "\nYour matrix: \n";
     for (unsigned i = 0; i < size; ++i) {
         for (unsigned j = 0; j < size; ++j)
             cout << mat[i][j] << ' ';
@@ -20,6 +21,7 @@ void print_mat(double ** mat, double * b, int size) {
 }
 
 void read_mat(double ** mat, double * b, int size) {
+    cout << "Enter matrix: \n";
     for (unsigned i = 0; i < size; i++) {
         for (unsigned j = 0; j < size; j++) 
             cin >> mat[i][j];
@@ -86,17 +88,14 @@ void new_x(double ** mat, double * b, double * beta, double * xn, double * xp, i
         for (unsigned j = 0; j < size; j++)
             if (i != j)
                 xn[i] += ( -mat[i][j] / mat[i][i] * xp[j] );
-        // xn[i] = (sum / mat[i][i]);
     }
-    cout << "Xn = {";
-    for (unsigned iter = 0; iter < size; ++iter)
-        cout << xn[iter] << ' ';
-    cout << "}\n";
 }
 
 int main() {
+    cout << "Enter size matrix: ";
     int size;
     cin >> size;
+    cout << '\n';
 
     double ** mat = create_mat(size);
     double * beta = create_vector(size);
@@ -105,22 +104,17 @@ int main() {
     double * xp   = create_vector(size);
 
     read_mat(mat, b, size);
-    cout << '\n';
-    print_mat(mat, b, size);
+    // print_mat(mat, b, size);
 
     create_first_approximation(mat, b, beta, size);
     create_diagonal_dominance(mat, b, size);
-    cout << '\n';
     print_mat(mat, b, size);
     new_x(mat, b, beta, xn, xp, size);
-    // while (norm(xp, xn, size) > eps) {
-    //     copy_vector(xp, xn, size);
-    //     new_x(mat, b, beta, xn, xp, size);
-    // }
-    for (unsigned iter = 0; iter < 50; ++iter) {
+    while (norm(xp, xn, size) > eps) {
         copy_vector(xp, xn, size);
         new_x(mat, b, beta, xn, xp, size);
     }
+    cout << "\nAnswer vector: \n";
     print_vector(xn, size);
     return 0;
 }
